@@ -8,19 +8,94 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="image_feed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ImageList" id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="image_feed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hgB-d5-bUO">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" rowHeight="267" id="Jn0-TL-FyX" userLabel="ImagesListCell" customClass="ImagesListCell" customModule="image_feed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="267"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jn0-TL-FyX" id="nKg-fk-FkR">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="267"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="dJh-OW-m49" userLabel="Cell Image">
+                                                    <rect key="frame" x="16" y="4" width="361" height="259"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="16"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1K5-AY-E9d" userLabel="Like">
+                                                    <rect key="frame" x="333" y="4" width="44" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="Like"/>
+                                                    <state key="selected" image="Like"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11 сентября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-m2-oCE" userLabel="Date">
+                                                    <rect key="frame" x="24" y="239" width="74" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dJh-OW-m49" secondAttribute="bottom" constant="4" id="296-TB-FNQ"/>
+                                                <constraint firstItem="dJh-OW-m49" firstAttribute="top" secondItem="nKg-fk-FkR" secondAttribute="top" constant="4" id="98X-Oh-YuN"/>
+                                                <constraint firstAttribute="trailing" secondItem="dJh-OW-m49" secondAttribute="trailing" constant="16" id="LDp-YB-Qw4"/>
+                                                <constraint firstItem="dJh-OW-m49" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GfX-m2-oCE" secondAttribute="trailing" constant="8" id="MRu-LE-6f0"/>
+                                                <constraint firstItem="1K5-AY-E9d" firstAttribute="top" secondItem="dJh-OW-m49" secondAttribute="top" id="NDF-Nd-aV5"/>
+                                                <constraint firstItem="dJh-OW-m49" firstAttribute="trailing" secondItem="1K5-AY-E9d" secondAttribute="trailing" id="cRA-vX-4vd"/>
+                                                <constraint firstItem="dJh-OW-m49" firstAttribute="bottom" secondItem="GfX-m2-oCE" secondAttribute="bottom" constant="8" id="ctX-hg-OmP"/>
+                                                <constraint firstItem="GfX-m2-oCE" firstAttribute="leading" secondItem="dJh-OW-m49" secondAttribute="leading" constant="8" id="mf8-fm-Ma9"/>
+                                                <constraint firstItem="dJh-OW-m49" firstAttribute="leading" secondItem="nKg-fk-FkR" secondAttribute="leading" constant="16" id="ooW-WD-wrP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellImage" destination="dJh-OW-m49" id="UUb-Ft-9JG"/>
+                                            <outlet property="dateLabel" destination="GfX-m2-oCE" id="6jh-gG-Wd1"/>
+                                            <outlet property="likeButton" destination="1K5-AY-E9d" id="9NF-9D-6CL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="zAG-3q-W4j"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="fWu-2O-41g"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="hgB-d5-bUO" secondAttribute="top" id="7di-Bh-WZh"/>
+                            <constraint firstItem="hgB-d5-bUO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ay7-dt-4kB"/>
+                            <constraint firstAttribute="trailing" secondItem="hgB-d5-bUO" secondAttribute="trailing" id="bvm-TR-sQ0"/>
+                            <constraint firstItem="hgB-d5-bUO" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="lMC-DL-TC2"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="hgB-d5-bUO" id="rqN-RC-MWX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="61.832061068702288" y="3.5211267605633805"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="0" width="200" height="132"/>
+        <image name="Like" width="44" height="44"/>
+    </resources>
 </document>
