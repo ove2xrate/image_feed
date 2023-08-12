@@ -37,12 +37,10 @@ class ImagesListViewController: UIViewController {
 
 // MARK: - Extensions
 extension ImagesListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
 }
 
 extension ImagesListViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photosName.count
     }
@@ -62,6 +60,7 @@ extension ImagesListViewController: UITableViewDataSource {
         guard let image = UIImage(named: photosName[indexPath.row]) else {
             return 0
         }
+        
         let imageInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let imageViewWidth = tableView.bounds.width - imageInsets.left - imageInsets.right
         let imageWidth = image.size.width
