@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90BAD982A8A553C002D46A3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90BAD972A8A553C002D46A3 /* ProfileViewController.swift */; };
 		A91274DE2A750E80009EAB1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91274DD2A750E80009EAB1A /* AppDelegate.swift */; };
 		A91274E02A750E80009EAB1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91274DF2A750E80009EAB1A /* SceneDelegate.swift */; };
 		A91274E22A750E80009EAB1A /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91274E12A750E80009EAB1A /* ImagesListViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A90BAD972A8A553C002D46A3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A91274DA2A750E80009EAB1A /* image_feed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = image_feed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91274DD2A750E80009EAB1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A91274DF2A750E80009EAB1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A90BAD962A8A5525002D46A3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A90BAD972A8A553C002D46A3 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		A91274D12A750E80009EAB1A = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		A91274DC2A750E80009EAB1A /* image_feed */ = {
 			isa = PBXGroup;
 			children = (
+				A90BAD962A8A5525002D46A3 /* Profile */,
 				A9F383202A84E00D00D9A15E /* ImagesList */,
 				A91274DD2A750E80009EAB1A /* AppDelegate.swift */,
 				A91274DF2A750E80009EAB1A /* SceneDelegate.swift */,
@@ -151,6 +162,7 @@
 			files = (
 				A91274E22A750E80009EAB1A /* ImagesListViewController.swift in Sources */,
 				A9F3831F2A84DFA000D9A15E /* ImagesListCell.swift in Sources */,
+				A90BAD982A8A553C002D46A3 /* ProfileViewController.swift in Sources */,
 				A91274DE2A750E80009EAB1A /* AppDelegate.swift in Sources */,
 				A91274E02A750E80009EAB1A /* SceneDelegate.swift in Sources */,
 			);
