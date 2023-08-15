@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p4V-hk-QIX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,6 +8,28 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gc4-yp-AcE">
+            <objects>
+                <tabBarController id="p4V-hk-QIX" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j4z-h9-ze8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </tabBarAppearance>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="d3c-ca-Lvh"/>
+                        <segue destination="5Ja-iK-Uzv" kind="relationship" relationship="viewControllers" id="Z3M-IO-aqH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hDq-D6-ir6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1050" y="4"/>
+        </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -85,13 +107,14 @@
                             <constraint firstItem="hgB-d5-bUO" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="lMC-DL-TC2"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="AkW-js-eSf"/>
                     <connections>
                         <outlet property="tableView" destination="hgB-d5-bUO" id="rqN-RC-MWX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61.832061068702288" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-277" y="-431"/>
         </scene>
         <!--Profile-->
         <scene sceneID="FJ1-N4-GJd">
@@ -154,6 +177,7 @@
                             <constraint firstItem="24g-qb-h2U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KSs-r0-ZPd" secondAttribute="trailing" id="zpX-Ps-6PB"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_active " id="r8X-ks-24q"/>
                     <connections>
                         <outlet property="avatarImageView" destination="KSs-r0-ZPd" id="S00-q6-zdb"/>
                         <outlet property="descriptionLabel" destination="o7r-Rz-fry" id="XNL-P3-zaq"/>
@@ -164,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRH-TT-dS4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808" y="4"/>
+            <point key="canvasLocation" x="-277" y="419"/>
         </scene>
     </scenes>
     <resources>
@@ -172,5 +196,7 @@
         <image name="Like" width="44" height="44"/>
         <image name="Logout" width="20" height="22"/>
         <image name="avatar" width="140" height="140"/>
+        <image name="tab_editorial_active" width="30" height="30"/>
+        <image name="tab_profile_active " width="30" height="30"/>
     </resources>
 </document>
