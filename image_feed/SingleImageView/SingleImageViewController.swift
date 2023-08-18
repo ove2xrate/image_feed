@@ -8,6 +8,7 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
+// MARK: - IBOutlet
     @IBOutlet var imageView: UIImageView!
     
 // MARK: - ViewController
