@@ -2,8 +2,8 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     let profileImage = UIImage(named: "avatar")
-
-// MARK: - ViewController
+    
+    // MARK: - ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,22 +49,22 @@ final class ProfileViewController: UIViewController {
         
         // MARK: - Constraint's
         NSLayoutConstraint.activate([
-        namelabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-        namelabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
-        loginNameLabel.leadingAnchor.constraint(equalTo: namelabel.leadingAnchor),
-        loginNameLabel.topAnchor.constraint(equalTo: namelabel.bottomAnchor, constant: 8),
-        descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
-        descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8),
-        imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-        imageView.widthAnchor.constraint(equalToConstant: 70),
-        imageView.heightAnchor.constraint(equalToConstant: 70),
-        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-        button.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            namelabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            namelabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
+            loginNameLabel.leadingAnchor.constraint(equalTo: namelabel.leadingAnchor),
+            loginNameLabel.topAnchor.constraint(equalTo: namelabel.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8),
+            imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            imageView.widthAnchor.constraint(equalToConstant: 70),
+            imageView.heightAnchor.constraint(equalToConstant: 70),
+            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            button.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
         ])
-        }
+    }
     
-// MARK: - Private Methods
+    // MARK: - Private Methods
     @objc
     private func didTapButton() {
     }

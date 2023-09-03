@@ -1,12 +1,12 @@
 import UIKit
 
 final class ImagesListViewController: UIViewController {
-    private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
     
-// MARK: - IBOutlet
+    // MARK: - IBOutlet
     @IBOutlet private var tableView: UITableView!
     
-// MARK: - Private Properties
+    // MARK: - Private Properties
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
     private lazy var dateFormatter: DateFormatter = {
@@ -16,14 +16,14 @@ final class ImagesListViewController: UIViewController {
         return formatter
     }()
     
-// MARK: - ViewController
+    // MARK: - ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowSingleImageSegueIdentifier {
+        if segue.identifier == showSingleImageSegueIdentifier {
             let viewController = segue.destination as! SingleImageViewController
             let indexPath = sender as! IndexPath
             let image = UIImage(named: photosName[indexPath.row])
@@ -38,9 +38,9 @@ final class ImagesListViewController: UIViewController {
 extension ImagesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
-        }
+        performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
+}
 
 extension ImagesListViewController: UITableViewDataSource {
     
@@ -58,9 +58,9 @@ extension ImagesListViewController: UITableViewDataSource {
         configCell(for: imageListCell, with: indexPath)
         return imageListCell
         
-    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        guard let image = UIImage(named: photosName[indexPath.row]) else {
-            return
+        func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+            guard let image = UIImage(named: photosName[indexPath.row]) else {
+                return
             }
             
             cell.cellImage.image = image
