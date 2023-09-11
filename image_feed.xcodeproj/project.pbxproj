@@ -17,6 +17,7 @@
 		A94DB8E62A8F8F9E00579B8A /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94DB8E52A8F8F9E00579B8A /* SingleImageViewController.swift */; };
 		A94E495B2AA4A3800097A116 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E495A2AA4A3800097A116 /* Constants.swift */; };
 		A98B09CA2AAB5DC6004A584A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B09C92AAB5DC6004A584A /* AuthViewController.swift */; };
+		A98B09CD2AAF257C004A584A /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B09CC2AAF257C004A584A /* WebViewViewController.swift */; };
 		A9F3831F2A84DFA000D9A15E /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3831E2A84DFA000D9A15E /* ImagesListCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		A94DB8E52A8F8F9E00579B8A /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		A94E495A2AA4A3800097A116 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A98B09C92AAB5DC6004A584A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		A98B09CC2AAF257C004A584A /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		A9F3831E2A84DFA000D9A15E /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				A98B09C92AAB5DC6004A584A /* AuthViewController.swift */,
+				A98B09CC2AAF257C004A584A /* WebViewViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				A98B09CA2AAB5DC6004A584A /* AuthViewController.swift in Sources */,
 				A94E495B2AA4A3800097A116 /* Constants.swift in Sources */,
 				A94DB8E62A8F8F9E00579B8A /* SingleImageViewController.swift in Sources */,
+				A98B09CD2AAF257C004A584A /* WebViewViewController.swift in Sources */,
 				A91274E02A750E80009EAB1A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
