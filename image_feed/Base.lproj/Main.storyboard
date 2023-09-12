@@ -312,6 +312,10 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="nav_back_button"/>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p8g-72-IZn">
+                                <rect key="frame" x="0.0" y="38" width="393" height="4"/>
+                                <color key="tintColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X3d-q2-P1v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -319,13 +323,17 @@
                             <constraint firstAttribute="bottom" secondItem="MUN-i2-hZu" secondAttribute="bottom" id="BLd-SH-eVH"/>
                             <constraint firstItem="BHp-JW-aLr" firstAttribute="leading" secondItem="X3d-q2-P1v" secondAttribute="leading" id="GU3-Qi-EEp"/>
                             <constraint firstItem="X3d-q2-P1v" firstAttribute="trailing" secondItem="BHp-JW-aLr" secondAttribute="trailing" constant="245" id="MSw-wW-Y2L"/>
+                            <constraint firstItem="p8g-72-IZn" firstAttribute="bottom" secondItem="BHp-JW-aLr" secondAttribute="bottom" id="c0l-nb-kBk"/>
                             <constraint firstItem="MUN-i2-hZu" firstAttribute="top" secondItem="O0s-K5-xGJ" secondAttribute="top" id="fLq-5O-qAy"/>
                             <constraint firstAttribute="trailing" secondItem="MUN-i2-hZu" secondAttribute="trailing" id="mTQ-eQ-AH2"/>
                             <constraint firstItem="BHp-JW-aLr" firstAttribute="top" secondItem="X3d-q2-P1v" secondAttribute="top" id="ool-ED-qLX"/>
+                            <constraint firstItem="p8g-72-IZn" firstAttribute="leading" secondItem="X3d-q2-P1v" secondAttribute="leading" id="pAn-9v-n9T"/>
+                            <constraint firstItem="X3d-q2-P1v" firstAttribute="trailing" secondItem="p8g-72-IZn" secondAttribute="trailing" id="uS0-m3-6yx"/>
                             <constraint firstItem="MUN-i2-hZu" firstAttribute="leading" secondItem="O0s-K5-xGJ" secondAttribute="leading" id="z2A-It-zoC"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressView" destination="p8g-72-IZn" id="Pnm-yo-3iU"/>
                         <outlet property="webView" destination="MUN-i2-hZu" id="0Y1-yz-Byg"/>
                     </connections>
                 </viewController>
