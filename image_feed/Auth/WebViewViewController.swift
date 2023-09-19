@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+fileprivate let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
 
 protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
@@ -9,33 +9,31 @@ protocol WebViewViewControllerDelegate: AnyObject {
 }
 
 final class WebViewViewController: UIViewController {
-    @IBOutlet var webView: WKWebView!
-    @IBAction func didTapBackButton(_ sender: Any) {
-        delegate?.webViewViewControllerDidCancel(self)
-    }
-    
-    @IBOutlet var progressView: UIProgressView!
-    
+// MARK: - Public Properties
     weak var delegate: WebViewViewControllerDelegate?
     
+// MARK: - IBOutlet
+    @IBOutlet var webView: WKWebView!
+    @IBOutlet var progressView: UIProgressView!
+    
+// MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
         webView.navigationDelegate = self
         
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!  //1
+        var urlComponents = URLComponents(string: unsplashAuthorizeURLString)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),                  //2
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),             //3
-            URLQueryItem(name: "response_type", value: "code"),                 //4
-            URLQueryItem(name: "scope", value: AccessScope)                     //5
+            URLQueryItem(name: "client_id", value: accessKey),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "scope", value: accessScope)                     
         ]
         let url = urlComponents.url!
         let request = URLRequest(url: url)
         webView.load(request)
         
         updateProgress()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +43,8 @@ final class WebViewViewController: UIViewController {
             forKeyPath: #keyPath(WKWebView.estimatedProgress),
             options: .new,
             context: nil)
+        
+        updateProgress()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,10 +72,14 @@ final class WebViewViewController: UIViewController {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
+    
+// MARK: - IBAction
+    @IBAction func didTapBackButton(_ sender: Any) {
+        delegate?.webViewViewControllerDidCancel(self)
+    }
 }
 
-
-
+// MARK: - Extensions
 extension WebViewViewController: WKNavigationDelegate {
     func webView(
         _ webView: WKWebView,
