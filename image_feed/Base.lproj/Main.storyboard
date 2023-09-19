@@ -209,20 +209,20 @@
         <!--Auth View Controller-->
         <scene sceneID="CbU-IX-G4K">
             <objects>
-                <viewController id="g0y-vE-dL3" customClass="AuthViewController" customModule="image_feed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="g0y-vE-dL3" customClass="AuthViewController" customModule="image_feed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f5Y-1K-xL1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startscreenlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Bd9-sG-LOg">
-                                <rect key="frame" x="166.66666666666666" y="419" width="60" height="60"/>
+                                <rect key="frame" x="166.66666666666666" y="418" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="ZFn-17-Khl"/>
                                     <constraint firstAttribute="height" constant="60" id="deZ-pL-hGc"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zro-fL-GPG">
-                                <rect key="frame" x="16" y="670" width="361" height="48"/>
+                                <rect key="frame" x="16" y="680" width="361" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="6Lp-Ym-w0d"/>
                                 </constraints>
@@ -241,7 +241,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="729-qY-Dne" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="NKi-Eg-ZWx"/>
+                                    <segue destination="729-qY-Dne" kind="presentation" identifier="ShowWebView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="NKi-Eg-ZWx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -276,7 +276,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1YZ-qv-tKZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dq8-ZZ-zYZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -335,6 +335,7 @@
                             <constraint firstItem="MUN-i2-hZu" firstAttribute="leading" secondItem="O0s-K5-xGJ" secondAttribute="leading" id="z2A-It-zoC"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="41B-gG-lXZ"/>
                     <connections>
                         <outlet property="progressView" destination="p8g-72-IZn" id="Pnm-yo-3iU"/>
                         <outlet property="webView" destination="MUN-i2-hZu" id="0Y1-yz-Byg"/>
@@ -368,7 +369,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="1YZ-qv-tKZ" kind="presentation" identifier="ShowAuthenticationScreen" id="fom-nZ-5CS"/>
+                        <segue destination="1YZ-qv-tKZ" kind="presentation" identifier="ShowAuthenticationScreen" modalPresentationStyle="fullScreen" id="fom-nZ-5CS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0H-KG-2fm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
