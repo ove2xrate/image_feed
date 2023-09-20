@@ -78,10 +78,10 @@
             filePath = "image_feed/OAuth2/OAuth2Service.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "fetchOAuthToken(_:completion:)"
-            landmarkType = "7">
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "authToken"
+            landmarkType = "24">
             <Locations>
                <Location
                   uuid = "C2AEAB50-B071-4F7E-961D-F533FC3269AF - 7e5809cf8aa91859"

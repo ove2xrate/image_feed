@@ -9,14 +9,14 @@ protocol WebViewViewControllerDelegate: AnyObject {
 }
 
 final class WebViewViewController: UIViewController {
-// MARK: - Public Properties
+    // MARK: - Public Properties
     weak var delegate: WebViewViewControllerDelegate?
     
-// MARK: - IBOutlet
+    // MARK: - IBOutlet
     @IBOutlet var webView: WKWebView!
     @IBOutlet var progressView: UIProgressView!
     
-// MARK: - UIViewController
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,7 +73,7 @@ final class WebViewViewController: UIViewController {
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
     
-// MARK: - IBAction
+    // MARK: - IBAction
     @IBAction func didTapBackButton(_ sender: Any) {
         delegate?.webViewViewControllerDidCancel(self)
     }

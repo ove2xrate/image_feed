@@ -5,14 +5,14 @@ protocol AuthViewControllerDelegate: AnyObject {
 }
 
 final class AuthViewController: UIViewController {
-// MARK: - Public Properties
+    // MARK: - Public Properties
     weak var delegate: AuthViewControllerDelegate?
     
-// MARK: - Private Properties
+    // MARK: - Private Properties
     private let ShowWebViewSegueIdentifier = "ShowWebView"
     
     
-// MARK: - Private Methods
+    // MARK: - Private Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ShowWebViewSegueIdentifier {
             guard

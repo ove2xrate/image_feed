@@ -15,10 +15,10 @@ struct OAuthTokenResponseBody: Decodable {
 }
 
 final class OAuth2Service {
-// MARK: - Public Properties
+    // MARK: - Public Properties
     static let shared = OAuth2Service()
     
-// MARK: - Private Properties
+    // MARK: - Private Properties
     private let urlSession = URLSession.shared
     private (set) var authToken: String? {
         get {
@@ -29,7 +29,7 @@ final class OAuth2Service {
         }
     }
     
-// MARK: - Public Methods
+    // MARK: - Public Methods
     func fetchOAuthToken(
         _ code: String,
         completion: @escaping (Result<String, Error>) -> Void ) {
