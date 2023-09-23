@@ -78,8 +78,8 @@
             filePath = "image_feed/OAuth2/OAuth2Service.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "authToken"
             landmarkType = "24">
             <Locations>

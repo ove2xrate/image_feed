@@ -20,6 +20,10 @@ final class OAuth2Service {
     
     // MARK: - Private Properties
     private let urlSession = URLSession.shared
+    
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
     private (set) var authToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -30,23 +34,34 @@ final class OAuth2Service {
     }
     
     // MARK: - Public Methods
-    func fetchOAuthToken(
-        _ code: String,
-        completion: @escaping (Result<String, Error>) -> Void ) {
-            let request = authTokenRequest(code: code)
-            let task = object(for: request) { [weak self] result in
+
+    func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        if lastCode == code { return }
+        task?.cancel()
+        lastCode = code
+        
+        let request = authTokenRequest(code: code)
+        let task = object(for: request) { [weak self] result in
+            DispatchQueue.main.async {
+                
                 guard let self = self else { return }
                 switch result {
                 case .success(let body):
                     let authToken = body.accessToken
                     self.authToken = authToken
                     completion(.success(authToken))
+                    self.task = nil
+                    
                 case .failure(let error):
                     completion(.failure(error))
+                    self.lastCode = nil
                 }
             }
-            task.resume()
         }
+        self.task = task
+        task.resume()
+    }
 }
 
 // MARK: - Extensions
