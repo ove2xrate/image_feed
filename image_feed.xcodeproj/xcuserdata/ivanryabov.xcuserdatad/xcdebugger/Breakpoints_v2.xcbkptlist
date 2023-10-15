@@ -32,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
             endingLineNumber = "83"
-            landmarkName = "WebViewViewController"
-            landmarkType = "21">
+            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            landmarkName = "code(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,56 +64,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            landmarkName = "code(from:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C2AEAB50-B071-4F7E-961D-F533FC3269AF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "image_feed/OAuth2/OAuth2Service.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "authToken"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "C2AEAB50-B071-4F7E-961D-F533FC3269AF - 7e5809cf8aa91859"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;image_feed.OAuth2Service.OAuthTokenResponseBody, Swift.Error&gt;) -&gt; () in image_feed.OAuth2Service.fetchOAuthToken(_: Swift.String, completion: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "image_feed"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ivanryabov/Documents/image_feed/image_feed/OAuth2/OAuth2Service.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "500">
-               </Location>
-               <Location
-                  uuid = "C2AEAB50-B071-4F7E-961D-F533FC3269AF - d70a31341c503965"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "image_feed.OAuth2Service.fetchOAuthToken(_: Swift.String, completion: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "image_feed"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ivanryabov/Documents/image_feed/image_feed/OAuth2/OAuth2Service.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "168">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
