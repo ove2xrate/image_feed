@@ -5,6 +5,7 @@ final class ProfileImageService {
     
     // MARK: - Properties
     static let shared = ProfileImageService()
+    private init() { }
     static let didChangeNotification = Notification.Name("ProfileImageProviderDidChange")
     
     private let urlSession = URLSession.shared

@@ -1,27 +1,19 @@
 import UIKit
 
 class AlertPresenter {
-    weak var onViewController: UIViewController?
+    weak var delegate: UIViewController?
     
-    func showAlert(alertError result: Error) {
-        var title = "Error"
-        var message = result.localizedDescription
-        if result is NetworkError {
-            title = "Что-то пошло не так("
-            message = "Не удалось войти в систему"
-        }
+    func showAlert(title: String, message: String, handler: @escaping () -> Void) {
         let alert = UIAlertController(
             title: title,
             message: message,
             preferredStyle: .alert
         )
-        let action = UIAlertAction(title: "Ok", style: .default)
+        let action = UIAlertAction(title: "Ok", style: .default) { _ in 
+            handler()
+        }
         
         alert.addAction(action)
-        onViewController?.present(alert, animated: true, completion: nil)
-    }
-    
-    init(onViewController: UIViewController) {
-        self.onViewController = onViewController
+        delegate?.present(alert, animated: true, completion: nil)
     }
 }

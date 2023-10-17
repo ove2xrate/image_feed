@@ -4,7 +4,10 @@ import UIKit
 final class URLRequestBuilder {
     
     static let shared = URLRequestBuilder()
+    private init() { }
+    
     private let oauth2TokenStorage = OAuth2TokenStorage.shared
+    
     
     func makeHTTPRequest(path: String, httpMethod: String? = nil, baseURLString: String? = nil) -> URLRequest? {
         

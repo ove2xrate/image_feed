@@ -26,6 +26,7 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
+        label.numberOfLines = 0
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
