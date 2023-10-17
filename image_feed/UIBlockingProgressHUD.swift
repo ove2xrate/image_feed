@@ -1,8 +1,32 @@
-//
-//  UIBlockingProgressHUD.swift
-//  image_feed
-//
-//  Created by Ivan Ryabov on 24/09/2023.
-//
+import UIKit
+import ProgressHUD
 
-import Foundation
+final class UIBlockingProgressHUD {
+    static var isShowing: Bool = false
+    
+    private static var window: UIWindow? {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first
+        else {
+            return nil
+        }
+        return window
+    }
+
+    static func show() {
+        isShowing = true
+        window?.isUserInteractionEnabled = false
+        ProgressHUD.show()
+    }
+
+    static func dismiss() {
+        isShowing = false
+        window?.isUserInteractionEnabled = true
+        ProgressHUD.dismiss()
+    }
+    
+    static func setup() {
+        ProgressHUD.animationType = .circleRotateChase
+        ProgressHUD.colorHUD = .clear
+    }
+}
