@@ -41,13 +41,15 @@ final class SplashViewController: UIViewController {
     }
     
     private func showLoginAlert(error: Error) {
-        alertPresenter.showAlert(title: "Что-то пошло не так",
-                                 message: "Не удалось войти в систему, \(error.localizedDescription)") {
-            
-            self.switchToAuthViewController()
+        DispatchQueue.main.async { [weak self] in
+            self?.alertPresenter.showAlert(title: "Что-то пошло не так",
+                                           message: "Не удалось войти в систему, \(error.localizedDescription)") {
+                
+                self?.switchToAuthViewController()
+            }
+        }
     }
-}
-        
+    
     private func switchToAuthViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: .main)
         guard let authViewController = storyBoard.instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController else { return }
