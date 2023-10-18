@@ -82,6 +82,38 @@
             endingLineNumber = "91"
             landmarkName = "fetchAuthToken(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F7FDD635-751C-4431-A51F-FC19A120D2E9 - b665df199d84c45f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "image_feed.SplashViewController.fetchAuthToken(Swift.String) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/SplashView/SplashViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "F7FDD635-751C-4431-A51F-FC19A120D2E9 - fb397062c26b6b01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; () in image_feed.SplashViewController.fetchAuthToken(Swift.String) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/SplashView/SplashViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
