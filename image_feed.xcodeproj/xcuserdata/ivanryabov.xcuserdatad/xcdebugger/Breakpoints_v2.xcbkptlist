@@ -113,6 +113,36 @@
                   endingLineNumber = "92"
                   offsetFromSymbolStart = "60">
                </Location>
+               <Location
+                  uuid = "F7FDD635-751C-4431-A51F-FC19A120D2E9 - b665df199d84c45f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "image_feed.SplashViewController.fetchAuthToken(Swift.String) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/SplashView/SplashViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "F7FDD635-751C-4431-A51F-FC19A120D2E9 - fb397062c26b6b01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; () in image_feed.SplashViewController.fetchAuthToken(Swift.String) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/SplashView/SplashViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "76">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -193,6 +223,36 @@
                   endingLineNumber = "71"
                   offsetFromSymbolStart = "248">
                </Location>
+               <Location
+                  uuid = "A6ED6B41-7517-4E75-B7D9-2C72A3094406 - 2b6f5d11eb91f34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "image_feed.OAuth2Service.fetchAuthToken(_: Swift.String, completion: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/OAuth2/OAuth2Service.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1628">
+               </Location>
+               <Location
+                  uuid = "A6ED6B41-7517-4E75-B7D9-2C72A3094406 - 148cf71ceba86fa1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;image_feed.OAuthTokenResponseBody, Swift.Error&gt;) -&gt; () in image_feed.OAuth2Service.fetchAuthToken(_: Swift.String, completion: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/OAuth2/OAuth2Service.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "272">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -240,6 +300,36 @@
                   startingLineNumber = "75"
                   endingLineNumber = "75"
                   offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "277031EB-782D-4B4C-B3C0-B34ECC0D70F2 - 148cf71ceba86c2d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;image_feed.OAuthTokenResponseBody, Swift.Error&gt;) -&gt; () in image_feed.OAuth2Service.fetchAuthToken(_: Swift.String, completion: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/OAuth2/OAuth2Service.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "524">
+               </Location>
+               <Location
+                  uuid = "277031EB-782D-4B4C-B3C0-B34ECC0D70F2 - 148cf71ceba86c2d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;image_feed.OAuthTokenResponseBody, Swift.Error&gt;) -&gt; () in image_feed.OAuth2Service.fetchAuthToken(_: Swift.String, completion: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "image_feed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanryabov/Desktop/image_feed/image_feed/OAuth2/OAuth2Service.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "596">
                </Location>
             </Locations>
          </BreakpointContent>

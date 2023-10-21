@@ -1,14 +1,9 @@
 import Foundation
 
 final class ImagesListService {
-    private (set) var photos: [Photo] = [] {
-        didSet {
-            NotificationCenter.default.post(name: ImagesListService.DidChangeNotification, object: self)
-        }
-    }
-    
-    static let DidChangeNotification = Notification.Name("ImagesListServiceDidChange")
-    
+    private (set) var photos: [Photo] = []
+    static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
+
     private var currentPage = 1
     private var lastLoadedPage: Int?
     
@@ -16,6 +11,7 @@ final class ImagesListService {
     private var photoId = Photo.CodingKeys.id
     
     func fetchPhotosNextPage() {
+        assert(Thread.isMainThread)
         guard !isLoadingInProgress else {
             return
         }
@@ -60,7 +56,7 @@ final class ImagesListService {
                             self.currentPage += 1
                         }
                         
-                        NotificationCenter.default.post(name: ImagesListService.DidChangeNotification, object: self)
+                        NotificationCenter.default.post(name: ImagesListService.didChangeNotification, object: self)
                         
                     } catch {
                     }
