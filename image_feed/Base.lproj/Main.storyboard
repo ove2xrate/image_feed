@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQO-Aa-Nx5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQO-Aa-Nx5">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +13,7 @@
         <!--Auth View Controller-->
         <scene sceneID="O4V-Hc-kLM">
             <objects>
-                <viewController storyboardIdentifier="AuthViewController" id="0Wd-pG-JJY" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" id="0Wd-pG-JJY" userLabel="Auth View Controller" customClass="AuthViewController" customModule="image_feed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cG5-08-Ouq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,6 +113,9 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="Like"/>
                                                     <state key="selected" image="Like"/>
+                                                    <connections>
+                                                        <action selector="didTapLikeButton:" destination="Jn0-TL-FyX" eventType="touchUpInside" id="kiO-2j-HWz"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11 сентября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-m2-oCE" userLabel="Date">
                                                     <rect key="frame" x="24" y="239" width="74" height="16"/>
@@ -203,7 +206,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Backward"/>
                                 <connections>
-                                    <action selector="didTapBackButton:" destination="upL-H9-7U8" eventType="touchUpInside" id="yMK-Qj-c2m"/>
+                                    <action selector="didTapBackButton:forEvent:" destination="upL-H9-7U8" eventType="touchUpInside" id="bdF-lN-LlQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxR-28-Iri">
@@ -211,7 +214,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Share"/>
                                 <connections>
-                                    <action selector="didTapShareButton:" destination="upL-H9-7U8" eventType="touchUpInside" id="CBC-xE-aDa"/>
+                                    <action selector="didTapShareButton:" destination="upL-H9-7U8" eventType="touchUpInside" id="2bl-ri-nCa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,8 +233,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="b52-K6-VDl"/>
                     <connections>
+                        <outlet property="backButton" destination="dSH-cq-oNW" id="WPr-rK-H0V"/>
                         <outlet property="imageView" destination="BrD-6R-hXK" id="FGL-Uv-aHg"/>
                         <outlet property="scrollView" destination="eb0-5g-xDy" id="GRl-yj-V89"/>
+                        <outlet property="shareButton" destination="rxR-28-Iri" id="kbK-oq-Enr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKm-zW-zYs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -298,7 +303,7 @@
         <!--Root Navigation Controller-->
         <scene sceneID="HIY-WV-RD7">
             <objects>
-                <navigationController storyboardIdentifier="RootNavigationControllerID" automaticallyAdjustsScrollViewInsets="NO" id="bQO-Aa-Nx5" customClass="RootNavigationController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNavigationControllerID" automaticallyAdjustsScrollViewInsets="NO" id="bQO-Aa-Nx5" customClass="RootNavigationController" customModule="image_feed" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NhX-qb-yKi">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>

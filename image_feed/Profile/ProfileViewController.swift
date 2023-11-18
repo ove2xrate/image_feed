@@ -1,10 +1,12 @@
 import UIKit
+import WebKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
     private let oauth2TokenStorage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
+    private let webViewViewController = WebViewViewController.shared
     private var profileImageServiceObserver: NSObjectProtocol?
     
     private var nameLabel:UILabel = {
@@ -34,8 +36,8 @@ final class ProfileViewController: UIViewController {
     
     private var logoutButton:UIButton = {
         let button = UIButton.systemButton(with: UIImage(named: "Logout") ?? UIImage(),
-                                           target: ProfileViewController.self,
-                                           action: nil
+                                           target: self,
+                                           action: #selector(didTapButton)
         )
         button.tintColor = UIColor(hex: "#F56B6C")
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -64,9 +66,35 @@ final class ProfileViewController: UIViewController {
         fillProfileDetails()
     }
     
-    @objc
-    private func didTapButton() {
+    @objc private func didTapButton() {
+        showLogoutAlert()
+    }
+    
+    private func showLogoutAlert() {
+        let alertController = UIAlertController(
+            title: "Вы точно хотите выйти?",
+            message: "Возвращайтесь еще",
+            preferredStyle: .alert
+        )
         
+        let okAction = UIAlertAction(
+            title: "Да",
+            style: .default,
+            handler: { (_) in
+                self.logout()
+            }
+        )
+        
+        let noAction = UIAlertAction(
+            title: "Нет",
+            style: .default,
+            handler: nil
+        )
+        
+        alertController.addAction(okAction)
+        alertController.addAction(noAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func updateAvatar(notification: Notification) {
@@ -111,9 +139,9 @@ final class ProfileViewController: UIViewController {
             loginLabel.text = profile.loginName
             descriptionLabel.text = profile.bio
         } else {
-            nameLabel.text = "no data"
-            loginLabel.text = "no data"
-            descriptionLabel.text = "no data"
+            nameLabel.text = ""
+            loginLabel.text = ""
+            descriptionLabel.text = ""
         }
     }
     
@@ -149,5 +177,19 @@ final class ProfileViewController: UIViewController {
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45)
         ])
+    }
+    
+    private func logout() {
+        WebViewViewController.shared.removeCookiesAndWebData()
+        OAuth2TokenStorage.shared.deleteToken()
+        ImagesListService.shared.clearPhotosArray()
+        switchToSplashViewController()
+    }
+    
+    func switchToSplashViewController() {
+        
+        guard let window = UIApplication.shared.windows.first else { preconditionFailure("Invalid Configuration") }
+        let splashViewController = SplashViewController()
+        window.rootViewController = splashViewController
     }
 }

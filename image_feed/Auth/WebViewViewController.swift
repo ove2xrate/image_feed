@@ -8,6 +8,8 @@ protocol WebViewViewControllerDelegate: AnyObject {
 
 final class WebViewViewController: UIViewController {
     
+    static let shared = WebViewViewController()
+    
     // MARK: - IBOutlets
     
     @IBOutlet private var webView: WKWebView!
@@ -70,6 +72,16 @@ final class WebViewViewController: UIViewController {
             guard let self else { return }
             self.updateProgress()
         })
+    }
+    
+    func removeCookiesAndWebData() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
     }
 }
 // MARK: - WKNavigationDelegate

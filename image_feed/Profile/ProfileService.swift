@@ -2,9 +2,7 @@ import Foundation
 import UIKit
 
 final class ProfileService {
-    
     static let shared = ProfileService()
-    
     
     private var urlSession = URLSession.shared
     private let requestBuilder: URLRequestBuilder
