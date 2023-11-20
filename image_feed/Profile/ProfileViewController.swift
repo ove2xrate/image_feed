@@ -6,7 +6,6 @@ final class ProfileViewController: UIViewController {
     private let oauth2TokenStorage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    private let webViewViewController = WebViewViewController.shared
     private var profileImageServiceObserver: NSObjectProtocol?
     
     private var nameLabel:UILabel = {
@@ -72,8 +71,8 @@ final class ProfileViewController: UIViewController {
     
     private func showLogoutAlert() {
         let alertController = UIAlertController(
-            title: "Вы точно хотите выйти?",
-            message: "Возвращайтесь еще",
+            title: "Пока, пока!",
+            message: "Уверены, что хотите выйти?",
             preferredStyle: .alert
         )
         
@@ -180,10 +179,20 @@ final class ProfileViewController: UIViewController {
     }
     
     private func logout() {
-        WebViewViewController.shared.removeCookiesAndWebData()
+        removeCookiesAndWebData()
         OAuth2TokenStorage.shared.deleteToken()
         ImagesListService.shared.clearPhotosArray()
         switchToSplashViewController()
+    }
+    
+    func removeCookiesAndWebData() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
     }
     
     func switchToSplashViewController() {

@@ -28,5 +28,6 @@ final class UIBlockingProgressHUD {
     static func setup() {
         ProgressHUD.animationType = .singleCircleScaleRipple
         ProgressHUD.colorHUD = .clear
+        ProgressHUD.colorAnimation = .lightGray
     }
 }
