@@ -17,6 +17,10 @@ final class OAuth2TokenStorage {
             } else { return }
         }
     }
+    
+    func deleteToken() -> Bool {
+        keyChainStorage.removeObject(forKey: .tokenKey)
+    }
 }
 
 extension String {
