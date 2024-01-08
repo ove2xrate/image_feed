@@ -18,7 +18,6 @@ final class URLRequestBuilder {
         if let token = oauth2TokenStorage.token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-        
         return request
     }
 }

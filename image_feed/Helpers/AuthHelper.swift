@@ -9,8 +9,6 @@ final class AuthHelper: AuthHelperProtocol {
     
     let configuration: AuthConfiguration
     
-    // MARK: - Init
-    
     init(configuration: AuthConfiguration = .standard) {
         self.configuration = configuration
     }

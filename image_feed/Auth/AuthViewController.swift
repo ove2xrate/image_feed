@@ -13,7 +13,6 @@ final class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

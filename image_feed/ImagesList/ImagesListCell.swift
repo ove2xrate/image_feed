@@ -8,7 +8,7 @@ protocol ImagesListCellDelegate: AnyObject {
 public final class ImagesListCell: UITableViewCell {
     
     static let reuseIdentifier = "ImagesListCell"
-    private let placeholderImage = UIImage(named: "stub")
+    private let placeholderImage = UIImage(named: "placeholder_loading")
     weak var delegate: ImagesListCellDelegate?
     
     @IBOutlet private weak var cellImage: UIImageView!
