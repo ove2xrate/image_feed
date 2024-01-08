@@ -4,10 +4,7 @@ import UIKit
 final class URLRequestBuilder {
     
     static let shared = URLRequestBuilder()
-    private init() { }
-    
     private let oauth2TokenStorage = OAuth2TokenStorage.shared
-    
     
     func makeHTTPRequest(path: String, httpMethod: String? = nil, baseURLString: String? = nil) -> URLRequest? {
         
@@ -17,7 +14,7 @@ final class URLRequestBuilder {
         else { return nil }
         
         var request = URLRequest(url: baseURL)
-        request.httpMethod = httpMethod ?? "GET"
+        request.httpMethod = httpMethod ?? AuthConfigConstants.getMethodString
         if let token = oauth2TokenStorage.token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
