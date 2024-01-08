@@ -1,6 +1,6 @@
 import Foundation
 
-enum NetworkError: Error {
+private enum NetworkError: Error {
     case httpStatusCode(Int)
     case urlRequestError(Error)
     case urlSessionError
@@ -21,7 +21,7 @@ extension URLSession {
             if let data, let response, let statusCode = (response as? HTTPURLResponse)?.statusCode {
                 if 200..<300 ~= statusCode {
                     do {
-                        let decoder = ConvertFromSnakeCase()
+                        let decoder = SnakeCaseJSONDecoder()
                         let decodedModel = try decoder.decode(T.self, from: data)
                         fulfillCompletion(.success(decodedModel))
                     } catch {

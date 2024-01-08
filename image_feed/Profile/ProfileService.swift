@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 final class ProfileService {
+    
     static let shared = ProfileService()
     
     private var urlSession = URLSession.shared
@@ -18,13 +19,14 @@ final class ProfileService {
 private extension ProfileService {
     
     func makeProfileRequest() -> URLRequest? {
-        requestBuilder.makeHTTPRequest(path: "/me")
+        requestBuilder.makeHTTPRequest(path: AuthConfigConstants.profileRequestPathString)
     }
 }
 
 extension ProfileService {
     func fetchProfile(completion: @escaping (Result<Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
+        if fetchProfileTask != nil { return }
         fetchProfileTask?.cancel()
         
         guard let request = makeProfileRequest() else {
@@ -34,9 +36,9 @@ extension ProfileService {
         }
         
         let session = URLSession.shared
-        fetchProfileTask = session.objectTask(for: request) {
+        let task = session.objectTask(for: request) {
             [weak self] (result: Result<ProfileResult, Error>) in
-            guard let self else { preconditionFailure("Cannot make weak link") }
+            guard let self else { return }
             
             self.fetchProfileTask = nil
             switch result {
@@ -48,6 +50,8 @@ extension ProfileService {
                 completion(.failure(ProfileError.decodingFailed))
             }
         }
+        self.fetchProfileTask = task
+        task.resume()
     }
 }
 

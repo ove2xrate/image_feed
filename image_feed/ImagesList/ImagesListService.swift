@@ -55,7 +55,6 @@ final class ImagesListService {
         
         guard let request = makeLikeRequest(for: photoId, with: method) else {
             assertionFailure("Invalid request")
-            print(NetworkError.invalidRequest)
             return
         }
         
@@ -106,7 +105,6 @@ final class ImagesListService {
         
         guard let request = makePhotosListRequest(page: nextPage) else {
             assertionFailure("Invalid request")
-            print(NetworkError.invalidRequest)
             return
         }
         

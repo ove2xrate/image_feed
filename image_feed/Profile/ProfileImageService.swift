@@ -3,9 +3,7 @@ import UIKit
 
 final class ProfileImageService {
     
-    // MARK: - Properties
     static let shared = ProfileImageService()
-    private init() { }
     static let didChangeNotification = Notification.Name("ProfileImageProviderDidChange")
     
     private let urlSession = URLSession.shared
@@ -13,6 +11,8 @@ final class ProfileImageService {
     
     private var task: URLSessionTask?
     private (set) var avatarURL: URL?
+    
+    private init() {}
 }
 
 private extension ProfileImageService {
@@ -25,6 +25,7 @@ extension ProfileImageService {
     
     func fetchProfileImageURL(userName: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
+        if task != nil { return }
         task?.cancel()
         
         guard let request = makeRequest(userName: userName) else {
@@ -35,7 +36,10 @@ extension ProfileImageService {
         
         let dataTask = urlSession.objectTask(for: request) {
             [weak self] (result: Result<ProfileResult, Error>) in
-            guard let self else { preconditionFailure("Cannot make weak link") }
+            guard let self else { return }
+            
+            self.task = nil
+            
             switch result {
             case .success(let profileResult):
                 guard let mediumPhoto = profileResult.profileImage?.medium else { return }
@@ -55,13 +59,3 @@ extension ProfileImageService {
         dataTask.resume()
     }
 }
-
-extension Notification {
-    
-    static let userInfoImageURLKey: String = "URL"
-    
-    var userInfoImageURL: String? {
-        userInfo?[Notification.userInfoImageURLKey] as? String
-    }
-}
-

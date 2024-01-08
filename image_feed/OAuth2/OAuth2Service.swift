@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 final class OAuth2Service {
     
@@ -28,28 +27,23 @@ final class OAuth2Service {
 }
 
 private extension OAuth2Service {
-    
-    var selfProfileRequest: URLRequest? {
-        requestBuilder.makeHTTPRequest(path: "/me", httpMethod: "GET")
-    }
-    
-    func profileImageURLRequest(userName: String) -> URLRequest? {
-        requestBuilder.makeHTTPRequest(
-            path: "/users/\(userName)",
-            httpMethod: "GET"
-        )
+    struct OAuthTokenResponseBody: Decodable {
+        let accessToken: String
+        let tokenType: String
+        let scope: String
+        let createdAt: Int
     }
     
     func authTokenRequest(code: String) -> URLRequest? {
         return requestBuilder.makeHTTPRequest(
             path: "/oauth/token"
-            + "?client_id=\(accessKey)"
-            + "&&client_secret=\(secretKey)"
-            + "&&redirect_uri=\(redirectURI)"
+            + "?client_id=\(AuthConfiguration.standard.accessKey)"
+            + "&&client_secret=\(AuthConfiguration.standard.secretKey)"
+            + "&&redirect_uri=\(AuthConfiguration.standard.redirectURI)"
             + "&&code=\(code)"
-            + "&&grant_type=authorization_code",
-            httpMethod: "POST",
-            baseURLString: "https://unsplash.com"
+            + "&&grant_type=\(AuthConfigConstants.tokenRequestGrantTypeString)",
+            httpMethod: AuthConfigConstants.postMethodString,
+            baseURLString: AuthConfigConstants.baseURLString
         )
     }
 }
@@ -69,7 +63,7 @@ extension OAuth2Service {
         
         task = urlSession.objectTask (for: request) {
             [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
-            guard let self else { preconditionFailure("Cannot make weak link") }
+            guard let self else { return }
             self.task = nil
             switch result {
             case .success(let body):
@@ -84,5 +78,3 @@ extension OAuth2Service {
         }
     }
 }
-
-

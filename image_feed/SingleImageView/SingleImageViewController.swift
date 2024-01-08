@@ -20,6 +20,7 @@ final class SingleImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backButton.accessibilityIdentifier = "BackButton"
         view.backgroundColor = UIColor(hex: "#1A1B22")
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
