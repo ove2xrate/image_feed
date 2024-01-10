@@ -12,11 +12,9 @@ final class WebViewPresenter: WebViewPresenterProtocol {
     weak var view: WebViewViewControllerProtocol?
     var authHelper: AuthHelperProtocol
     
-    
     init(authHelper: AuthHelperProtocol) {
         self.authHelper = authHelper
     }
-    
     
     func viewDidLoad() {
         let request = authHelper.authRequest()

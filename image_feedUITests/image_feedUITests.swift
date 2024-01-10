@@ -19,13 +19,13 @@ class Image_FeedUITests: XCTestCase {
         let loginTextField = webView.descendants(matching: .textField).element
         XCTAssertTrue(loginTextField.waitForExistence(timeout: 5))
         loginTextField.tap()
-        loginTextField.typeText("")
+        loginTextField.typeText("metasaleing@gmail.com")
         webView.press(forDuration: 0.1, thenDragTo: webView)
-        
+        sleep(2)
         let passwordTextField = webView.descendants(matching: .secureTextField).element
         XCTAssertTrue(passwordTextField.waitForExistence(timeout: 5))
         passwordTextField.tap()
-        passwordTextField.typeText("")
+        passwordTextField.typeText("3DyPx23s")
         webView.tap()
         sleep(2)
         
@@ -53,6 +53,7 @@ class Image_FeedUITests: XCTestCase {
         
         cellToLike.tap()
         let image = app.scrollViews.images.element(boundBy: 0)
+        sleep(3)
         image.pinch(withScale: 3, velocity: 1)
         image.pinch(withScale: 0.5, velocity: -1)
         
@@ -65,8 +66,8 @@ class Image_FeedUITests: XCTestCase {
         
         app.tabBars.buttons.element(boundBy: 1).tap()
         
-        XCTAssertTrue(app.staticTexts[""].exists)
-        XCTAssertTrue(app.staticTexts[""].exists)
+        XCTAssertTrue(app.staticTexts["Ivan Ryabov"].exists)
+        XCTAssertTrue(app.staticTexts["@ove2xrate"].exists)
         
         app.buttons["LogoutButton"].tap()
         
