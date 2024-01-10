@@ -1,72 +1,66 @@
 import UIKit
-import WebKit
 import Kingfisher
 
+public protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfilePresenterProtocol? { get set }
+    func updateAvatar(url: URL)
+    func fillProfileDetails(_ profile: Profile?)
+}
+
 final class ProfileViewController: UIViewController {
-    private let oauth2TokenStorage = OAuth2TokenStorage.shared
+    private var profileUserNameLabel = UILabel()
+    private var profileLoginNameLabel = UILabel()
+    private var profileBioLabel = UILabel()
+    private let profileUserPhotoImage = UIImageView()
+    private var logoutButton: UIButton!
+    
+    
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
     
-    private var nameLabel:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private var loginLabel:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.textColor = UIColor(hex: "#AEAFB4")
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private var descriptionLabel:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private var logoutButton:UIButton = {
-        let button = UIButton.systemButton(with: UIImage(named: "Logout") ?? UIImage(),
-                                           target: self,
-                                           action: #selector(didTapButton)
-        )
-        button.tintColor = UIColor(hex: "#F56B6C")
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let profileImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "user_picture")
-        image.tintColor = .gray
-        image.clipsToBounds = true
-        image.layer.cornerRadius = 35
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
+    var presenter: ProfilePresenterProtocol?
+    let profileImagePlaceholder = UIImage(named: "placeholder")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout()
-        loadAvatar()
-        preparingProfileDetails(profile: profileService.profile)
+        view.backgroundColor = UIColor(hex: "#1A1B22")
+        presenter?.viewDidLoad()
+        
+        NotificationObserver()
+        
+        setupImageView()
+        setupLabels()
+        setupButton()
     }
+}
+
+private extension ProfileViewController {
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fillProfileDetails()
-    }
-    
-    @objc private func didTapButton() {
+    @objc func didTapButton() {
         showLogoutAlert()
+    }
+    
+    @objc func updateAvatar(notification: Notification) {
+        guard
+            isViewLoaded,
+            let userInfo = notification.userInfo,
+            let profileImageURL = userInfo[Notification.userInfoImageURLKey] as? String,
+            let url = URL(string: profileImageURL)
+        else { return }
+        updateAvatar(url: url)
+    }
+    
+    func NotificationObserver() {
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: ProfileImageService.didChangeNotification,
+            object: nil,
+            queue: .main,
+            using: { [weak self] notification in
+                guard let self else { return }
+                self.updateAvatar(notification: notification)
+            }
+        )
     }
     
     private func showLogoutAlert() {
@@ -80,7 +74,7 @@ final class ProfileViewController: UIViewController {
             title: "Да",
             style: .default,
             handler: { (_) in
-                self.logout()
+                self.presenter?.logout()
             }
         )
         
@@ -96,109 +90,122 @@ final class ProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func updateAvatar(notification: Notification) {
-        guard
-            isViewLoaded,
-            let userInfo = notification.userInfo,
-            let profileImageURL = userInfo[Notification.userInfoImageURLKey] as? String,
-            let url = URL(string: profileImageURL)
-        else { return }
-        updateAvatar(url: url)
+    private func setupImageView() {
+        profileUserPhotoImage.image = profileImagePlaceholder
+        profileUserPhotoImage.tintColor = .gray
+        
+        profileUserPhotoImage.accessibilityIdentifier = "ProfilePhoto"
+        
+        profileUserPhotoImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileUserPhotoImage)
+        
+        NSLayoutConstraint.activate([
+            profileUserPhotoImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            profileUserPhotoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            profileUserPhotoImage.widthAnchor.constraint(equalToConstant: 70),
+            profileUserPhotoImage.heightAnchor.constraint(equalToConstant: 70)
+        ])
     }
     
-    func loadAvatar() {
-        if let url = profileImageService.avatarURL {
-            updateAvatar(url: url)
+    private func setupLabels() {
+        
+        profileUserNameLabel.accessibilityIdentifier = "ProfileName"
+        profileUserNameLabel.textColor = .white
+        let font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight.bold)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 18 / font.pointSize
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: font,
+            .paragraphStyle: paragraphStyle
+        ]
+        profileUserNameLabel.attributedText = NSAttributedString(string: profileUserNameLabel.text ?? "", attributes: attributes)
+        
+        profileUserNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileUserNameLabel)
+        
+        
+        profileLoginNameLabel.accessibilityIdentifier = "ProfileLogin"
+        profileLoginNameLabel.textColor = .gray
+        let font2 = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
+        let attributes2: [NSAttributedString.Key: Any] = [
+            .font: font2,
+            .paragraphStyle: paragraphStyle
+        ]
+        profileLoginNameLabel.attributedText = NSAttributedString(string: profileLoginNameLabel.text ?? "", attributes: attributes2)
+        profileLoginNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileLoginNameLabel)
+        
+        
+        profileBioLabel.accessibilityIdentifier = "ProfileBio"
+        profileBioLabel.textColor = .white
+        let font3 = UIFont.systemFont(ofSize: 13, weight: .regular)
+        profileBioLabel.font = font3
+        profileBioLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileBioLabel)
+        
+        NSLayoutConstraint.activate([
+            profileUserNameLabel.leadingAnchor.constraint(equalTo: profileUserPhotoImage.leadingAnchor),
+            profileUserNameLabel.topAnchor.constraint(equalTo: profileUserPhotoImage.bottomAnchor, constant: 20),
+            profileLoginNameLabel.leadingAnchor.constraint(equalTo: profileUserNameLabel.leadingAnchor),
+            profileLoginNameLabel.topAnchor.constraint(equalTo: profileUserNameLabel.bottomAnchor, constant: 20),
+            profileBioLabel.leadingAnchor.constraint(equalTo: profileUserNameLabel.leadingAnchor),
+            profileBioLabel.topAnchor.constraint(equalTo: profileLoginNameLabel.bottomAnchor, constant: 20)
+        ])
+    }
+    
+    private func setupButton() {
+        let logoutButton = UIButton.systemButton(
+            with: UIImage(systemName: "ipad.and.arrow.forward") ?? UIImage(),
+            target: self,
+            action: #selector(self.didTapButton)
+        )
+        
+        logoutButton.accessibilityIdentifier = "LogoutButton"
+        
+        logoutButton.tintColor = .red
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoutButton)
+        
+        NSLayoutConstraint.activate([
+            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            logoutButton.centerYAnchor.constraint(equalTo: profileUserPhotoImage.centerYAnchor)
+        ])
+    }
+}
+
+extension ProfileViewController: ProfileViewControllerProtocol {
+    
+    func fillProfileDetails(_ profile: Profile?) {
+        if let profile = profileService.profile {
+            profileUserNameLabel.text = profile.name
+            profileLoginNameLabel.text = profile.loginName
+            profileBioLabel.text = profile.bio
+        } else {
+            profileUserNameLabel.text = "Error"
+            profileLoginNameLabel.text = "Error"
+            profileBioLabel.text = "Error"
+            profileUserPhotoImage.image = profileImagePlaceholder
         }
     }
     
     func updateAvatar(url: URL) {
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache()
+        
         let processor = RoundCornerImageProcessor(cornerRadius: 61)
-        profileImage.kf.indicatorType = .activity
-        profileImage.kf.setImage(with: url,
-                                 placeholder: UIImage(named: "placeholder"),
-                                 options: [.processor(processor)])
+        profileUserPhotoImage.kf.indicatorType = .activity
+        profileUserPhotoImage.kf.setImage(with: url,
+                                          placeholder: UIImage(named: "placeholder"),
+                                          options: [.processor(processor)])
     }
+}
+
+extension Notification {
     
-    func preparingProfileDetails(profile: Profile?) {
-        profileImageServiceObserver = NotificationCenter.default.addObserver(
-            forName: ProfileImageService.didChangeNotification,
-            object: nil,
-            queue: .main,
-            using: { [weak self] notification in
-                guard let self else { return }
-                self.updateAvatar(notification: notification)
-            }
-        )
-    }
+    static let userInfoImageURLKey: String = "URL"
     
-    func fillProfileDetails() {
-        if let profile = profileService.profile {
-            nameLabel.text = profile.name
-            loginLabel.text = profile.loginName
-            descriptionLabel.text = profile.bio
-        } else {
-            nameLabel.text = ""
-            loginLabel.text = ""
-            descriptionLabel.text = ""
-        }
-    }
-    
-    private func layout() {
-        view.backgroundColor = UIColor(hex: "#1A1B22")
-        
-        view.addSubview(logoutButton)
-        view.addSubview(profileImage)
-        view.addSubview(nameLabel)
-        view.addSubview(loginLabel)
-        view.addSubview(descriptionLabel)
-        
-        NSLayoutConstraint.activate([
-            profileImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            profileImage.widthAnchor.constraint(equalToConstant: 70),
-            profileImage.heightAnchor.constraint(equalToConstant: 70),
-            
-            nameLabel.heightAnchor.constraint(equalToConstant: 18),
-            nameLabel.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
-            nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8),
-            
-            loginLabel.heightAnchor.constraint(equalToConstant: 18),
-            loginLabel.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
-            loginLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 18),
-            descriptionLabel.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 8),
-            
-            logoutButton.widthAnchor.constraint(equalToConstant: 44),
-            logoutButton.heightAnchor.constraint(equalToConstant: 44),
-            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45)
-        ])
-    }
-    
-    private func logout() {
-        removeCookiesAndWebData()
-        OAuth2TokenStorage.shared.deleteToken()
-        ImagesListService.shared.clearPhotosArray()
-        switchToSplashViewController()
-    }
-    
-    func removeCookiesAndWebData() {
-        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-        
-        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-            records.forEach { record in
-                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-            }
-        }
-    }
-    
-    func switchToSplashViewController() {
-        
-        guard let window = UIApplication.shared.windows.first else { preconditionFailure("Invalid Configuration") }
-        let splashViewController = SplashViewController()
-        window.rootViewController = splashViewController
+    var userInfoImageURL: String? {
+        userInfo?[Notification.userInfoImageURLKey] as? String
     }
 }

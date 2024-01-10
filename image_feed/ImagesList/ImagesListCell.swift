@@ -5,22 +5,18 @@ protocol ImagesListCellDelegate: AnyObject {
     func imagesListCellDidTapLike(_ cell: ImagesListCell)
 }
 
-final class ImagesListCell: UITableViewCell {
+public final class ImagesListCell: UITableViewCell {
+    
     static let reuseIdentifier = "ImagesListCell"
     private let placeholderImage = UIImage(named: "placeholder_loading")
     weak var delegate: ImagesListCellDelegate?
     
-    let longDateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "d MMMM YYYY"
-        return df
-    }()
+    @IBOutlet private weak var cellImage: UIImageView!
+    @IBOutlet private weak var likeButton: UIButton!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var gradientView: UIView!
     
-    @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var dateLabel: UILabel!
-    
-    override func prepareForReuse() {
+    public override func prepareForReuse() {
         super.prepareForReuse()
         cellImage.kf.cancelDownloadTask()
     }
@@ -34,7 +30,8 @@ final class ImagesListCell: UITableViewCell {
         likeButton.setImage(likedImage, for: .normal)
     }
     
-    func loadCell(from photo: Photo) -> Bool {        
+    func loadCell(from photo: Photo) -> Bool {
+        
         var status = false
         
         if let photoDate = photo.createdAt {
@@ -42,6 +39,7 @@ final class ImagesListCell: UITableViewCell {
         } else {
             dateLabel.text = ""
         }
+        likeButton.accessibilityIdentifier = "LikeButton"
         
         likeCheck(photo.isLiked)
         
@@ -53,8 +51,9 @@ final class ImagesListCell: UITableViewCell {
             switch result {
             case .success(_):
                 status = true
-            case .failure(_):
+            case .failure(let error):
                 cellImage.image = placeholderImage
+                preconditionFailure("\(error.localizedDescription)")
             }
         }
         return status
